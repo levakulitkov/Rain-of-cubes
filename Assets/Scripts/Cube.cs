@@ -3,15 +3,20 @@ using UnityEngine;
 [RequireComponent(typeof(ColorChanger))]
 public class Cube : MonoBehaviour
 {
-    public ColorChanger ColorChanger;
+    private ColorChanger _colorChanger;
 
     private void Awake()
     {
-        ColorChanger = GetComponent<ColorChanger>();
+        _colorChanger = GetComponent<ColorChanger>();
     }
 
     public void Reset()
     {
-        ColorChanger.Reset();
+        _colorChanger.Reset();
+    }
+
+    public void SetDestructionColor()
+    {
+        _colorChanger.SetDestructionColor();
     }
 }

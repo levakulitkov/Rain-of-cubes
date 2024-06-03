@@ -15,7 +15,7 @@ public class ColorChanger : MonoBehaviour
         _defaultColor = _renderer.material.color;
     }
 
-    public void Change()
+    public void SetDestructionColor()
     {
         _renderer.material.color = _newColor;
     }

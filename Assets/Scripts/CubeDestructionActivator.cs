@@ -14,7 +14,7 @@ public class CubeDestructionActivator : MonoBehaviour
     {
         if (!_activatedCubes.Contains(cube))
         {
-            cube.ColorChanger.Change();
+            cube.SetDestructionColor();
 
             _activatedCubes.Add(cube);
 
