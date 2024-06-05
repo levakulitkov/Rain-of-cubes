@@ -9,29 +9,38 @@ public class CubesPool : MonoBehaviour
     [SerializeField] private Transform _spawnerTransform;
 
     private ObjectPool<Cube> _pool;
-    private float _minPosX;
-    private float _maxPosX;
-    private float _minPosY;
-    private float _maxPosY;
+    private float _minPositionX;
+    private float _maxPositionX;
+    private float _minPositionY;
+    private float _maxPositionY;
 
     private void Start()
     {
         _pool = new ObjectPool<Cube>(Create, OnGet, OnRelease, OnDestroyObject, false);
 
         float halfExtentX = _spawnerTransform.transform.localScale.x / 2;
-        _minPosX = _spawnerTransform.transform.position.x - halfExtentX;
-        _maxPosX = _spawnerTransform.transform.position.x + halfExtentX;
+        _minPositionX = _spawnerTransform.transform.position.x - halfExtentX;
+        _maxPositionX = _spawnerTransform.transform.position.x + halfExtentX;
 
         float halfExtentY = _spawnerTransform.transform.localScale.y / 2;
-        _minPosY = _spawnerTransform.transform.position.y - halfExtentY;
-        _maxPosY = _spawnerTransform.transform.position.y + halfExtentY;
+        _minPositionY = _spawnerTransform.transform.position.y - halfExtentY;
+        _maxPositionY = _spawnerTransform.transform.position.y + halfExtentY;
     }
 
     public void Release(Cube cube)
-        => _pool.Release(cube);
+    {
+        cube.Destroyed -= Release;
+
+        _pool.Release(cube);
+    }
 
     public Cube Get()
-    => _pool.Get();
+    {
+        Cube newCube = _pool.Get();
+        newCube.Destroyed += Release;
+
+        return newCube;
+    }
 
     private Cube Create()
     {
@@ -51,8 +60,6 @@ public class CubesPool : MonoBehaviour
     private void OnRelease(Cube cube)
     {
         cube.Reset();
-
-        cube.gameObject.SetActive(false);
     }
 
     private void OnDestroyObject(Cube cube)
@@ -60,7 +67,7 @@ public class CubesPool : MonoBehaviour
 
     private void SetSpawnPositionAndRotation(Cube cube)
         => cube.transform.SetPositionAndRotation(new Vector2(
-            Random.Range(_minPosX, _maxPosX),
-            Random.Range(_minPosY, _maxPosY)),
+            Random.Range(_minPositionX, _maxPositionX),
+            Random.Range(_minPositionY, _maxPositionY)),
             Quaternion.identity);
 }
