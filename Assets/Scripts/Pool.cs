@@ -26,8 +26,7 @@ public class Pool<Poolable> : MonoBehaviour where Poolable : MonoBehaviour
         => poolable.gameObject.SetActive(true);
 
     protected virtual void OnRelease(Poolable poolable)
-    {
-    }
+        => poolable.gameObject.SetActive(false);
 
     protected virtual void OnDestroyObject(Poolable poolable)
         => Destroy(poolable);

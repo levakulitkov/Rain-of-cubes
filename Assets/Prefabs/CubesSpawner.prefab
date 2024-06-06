@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Pool: {fileID: 5296274565195189237}
-  Interval: 0.1
+  _interval: 0.1
 --- !u!114 &5296274565195189237
 MonoBehaviour:
   m_ObjectHideFlags: 0

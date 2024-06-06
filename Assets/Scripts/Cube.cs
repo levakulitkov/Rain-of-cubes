@@ -40,10 +40,9 @@ public class Cube : MonoBehaviour
 
     private IEnumerator StartDestruction()
     {
-        var wait = new WaitForSeconds(UnityEngine.Random.Range(_minDelay, _maxDelay));
+        var wait = new WaitForSeconds(
+            UnityEngine.Random.Range(_minDelay, _maxDelay));
         yield return wait;
-
-        gameObject.SetActive(false);
 
         Destroyed?.Invoke(this);
     }
