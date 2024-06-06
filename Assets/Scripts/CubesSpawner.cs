@@ -1,11 +1,8 @@
 using System.Collections;
 using UnityEngine;
 
-public class CubesSpawner : MonoBehaviour
+public class CubesSpawner : Spawner<Cube>
 {
-    [SerializeField] private CubesPool _cubesPool;
-    [SerializeField] private float _interval;
-
     private void OnEnable()
     {
         StartCoroutine(SpawningRoutine());
@@ -13,13 +10,13 @@ public class CubesSpawner : MonoBehaviour
 
     private IEnumerator SpawningRoutine()
     {
-        var wait = new WaitForSeconds(_interval);
+        var wait = new WaitForSeconds(Interval);
 
         while (enabled)
         {
             yield return wait;
 
-            _cubesPool.Get();
+            Pool.Get();
         }
     }
 }

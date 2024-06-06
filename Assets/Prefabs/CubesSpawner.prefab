@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b3f8d622210cd43b6d0fe150bd87e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubesPool: {fileID: 5296274565195189237}
-  _interval: 0.1
+  Pool: {fileID: 5296274565195189237}
+  Interval: 0.1
 --- !u!114 &5296274565195189237
 MonoBehaviour:
   m_ObjectHideFlags: 0
