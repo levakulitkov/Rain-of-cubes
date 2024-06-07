@@ -12,7 +12,7 @@ public class Cube : MonoBehaviour
     private ColorChanger _colorChanger;
     private bool _isDestructionActivated;
 
-    public Action<Cube> Destroyed;
+    public event Action<Cube> Destroyed;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class Cube : MonoBehaviour
         {
             _isDestructionActivated = true;
 
-            _colorChanger.SetDestructionColor();
+            _colorChanger.Change();
 
             StartCoroutine(StartDestruction());
         }

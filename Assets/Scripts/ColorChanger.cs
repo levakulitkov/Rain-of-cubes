@@ -3,8 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Renderer))]
 public class ColorChanger : MonoBehaviour
 {
-    [SerializeField] private Color _newColor;
-
     private Renderer _renderer;
     private Color _defaultColor;
 
@@ -15,9 +13,9 @@ public class ColorChanger : MonoBehaviour
         _defaultColor = _renderer.material.color;
     }
 
-    public void SetDestructionColor()
+    public void Change()
     {
-        _renderer.material.color = _newColor;
+        _renderer.material.color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
     }
 
     public void Reset()
