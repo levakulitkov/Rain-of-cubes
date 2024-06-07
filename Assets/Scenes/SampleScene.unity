@@ -988,11 +988,16 @@ PrefabInstance:
       propertyPath: _container
       value: 
       objectReference: {fileID: 571888295}
+    - target: {fileID: 6989025610254008747, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 571888295}
     - target: {fileID: 7405009535052599822, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
       propertyPath: m_Name
       value: CubesSpawner
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5296274565195189237, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0626b4dc0f67fa145a0b6a1c29a197fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorChanger: {fileID: 5721428859507249919}
+  _minDelay: 2
+  _maxDelay: 5
 --- !u!54 &-3757224357064185141
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -160,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e124796ab74e454685cef2f2b89a9c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newColor: {r: 0, g: 0, b: 0, a: 0}
+  _newColor: {r: 1, g: 0.2688679, b: 0.2688679, a: 0}

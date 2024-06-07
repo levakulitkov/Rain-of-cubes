@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(ColorChanger))]
 public class Cube : MonoBehaviour
@@ -20,7 +21,7 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!_isDestructionActivated 
+        if (_isDestructionActivated == false
             && collision.collider.TryGetComponent(out DestructiveSurface _))
         {
             _isDestructionActivated = true;
@@ -40,8 +41,7 @@ public class Cube : MonoBehaviour
 
     private IEnumerator StartDestruction()
     {
-        var wait = new WaitForSeconds(UnityEngine.Random.Range(_minDelay, _maxDelay));
-        yield return wait;
+        yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
 
         gameObject.SetActive(false);
 

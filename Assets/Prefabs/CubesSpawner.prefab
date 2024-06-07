@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6613193590222913421}
   - component: {fileID: 4554050564533080367}
   - component: {fileID: 6989025610254008747}
-  - component: {fileID: 5296274565195189237}
   m_Layer: 0
   m_Name: CubesSpawner
   m_TagString: Untagged
@@ -33,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6613193590222913421
 MeshFilter:
@@ -97,20 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5b3f8d622210cd43b6d0fe150bd87e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubesPool: {fileID: 5296274565195189237}
   _interval: 0.1
---- !u!114 &5296274565195189237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7405009535052599822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a7faefb7e5abb449677eb1b52878e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _template: {fileID: 3587952916647425852, guid: fdabc2a5a27b89546855a2cc1ee191a8, type: 3}
   _container: {fileID: 0}
-  _spawnerTransform: {fileID: 2751765082018661013}
+  _spawnArea: {fileID: 2751765082018661013}
