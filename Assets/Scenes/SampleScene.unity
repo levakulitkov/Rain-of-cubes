@@ -370,9 +370,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 571888295}
     m_Modifications:
     - target: {fileID: 3564819225763765121, guid: d720649f979adee429c12a77f0788df4, type: 3}
+      propertyPath: _container
+      value: 
+      objectReference: {fileID: 571888295}
+    - target: {fileID: 3564819225763765121, guid: d720649f979adee429c12a77f0788df4, type: 3}
       propertyPath: _cubesPool
       value: 
-      objectReference: {fileID: 1660183354}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564819225763765121, guid: d720649f979adee429c12a77f0788df4, type: 3}
+      propertyPath: _cubesSpawner
+      value: 
+      objectReference: {fileID: 1966928233}
     - target: {fileID: 7390012119831530870, guid: d720649f979adee429c12a77f0788df4, type: 3}
       propertyPath: m_Name
       value: BombesSpawner
@@ -1007,15 +1015,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2751765082018661013, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
   m_PrefabInstance: {fileID: 7575179686529771610}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1660183354 stripped
+--- !u!114 &1966928233 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5296274565195189237, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6989025610254008747, guid: 6f05edf3bbafd2443aada0c06ab3079d, type: 3}
   m_PrefabInstance: {fileID: 7575179686529771610}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2a7faefb7e5abb449677eb1b52878e6, type: 3}
+  m_Script: {fileID: 11500000, guid: c5b3f8d622210cd43b6d0fe150bd87e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &7575179686529771610

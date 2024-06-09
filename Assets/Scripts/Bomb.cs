@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Fader))]
-public class Bomb : MonoBehaviour
+public class Bomb : Poolable<Bomb>
 {
     [SerializeField] private float _minDelay = 2f;
     [SerializeField] private float _maxDelay = 5f;
@@ -13,14 +13,14 @@ public class Bomb : MonoBehaviour
 
     private Fader _fader;
 
-    public Action<Bomb> Exploded;
+    public override event Action<Bomb> Destroyed;
 
     private void Awake()
     {
         _fader = GetComponent<Fader>();
     }
 
-    public void Reset()
+    public override void Reset()
     {
         _fader.Reset();
     }
@@ -38,7 +38,7 @@ public class Bomb : MonoBehaviour
 
         Explode();
 
-        Exploded?.Invoke(this);
+        Destroyed?.Invoke(this);
     }
 
     private void Explode()

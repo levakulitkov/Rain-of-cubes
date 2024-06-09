@@ -1,48 +1,41 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Spawner<Spawnable> : MonoBehaviour 
-    where Spawnable : MonoBehaviour
+public class Spawner<T> : MonoBehaviour where T : Poolable<T>
 {
-    [SerializeField] private float _interval;
-    [SerializeField] private Spawnable _template;
+    [SerializeField] private T _template;
     [SerializeField] private Transform _container;
 
-    private ObjectPool<Spawnable> _pool;
+    private ObjectPool<T> _pool;
 
-    public float Interval => _interval;
-
-    private void Start()
+    private void Awake()
     {
-        _pool = new ObjectPool<Spawnable>(Create, OnGet, OnRelease, 
+        _pool = new ObjectPool<T>(Create, OnGet, OnRelease,
             OnDestroyObject, false);
     }
 
-    protected virtual Spawnable Create()
-    {
-        Spawnable spawnable = Instantiate(_template, _container);
-        SetSpawnPositionAndRotation(spawnable);
+    public T Get()
+        => _pool.Get();
 
-        return spawnable;
+    protected virtual T Create()
+        => Instantiate(_template, _container);
+
+    protected virtual void OnGet(T poolable)
+    {
+        poolable.gameObject.SetActive(true);
+
+        poolable.Destroyed += _pool.Release;
     }
 
-    protected virtual void OnGet(Spawnable spawnable)
+    protected virtual void OnRelease(T poolable)
     {
-        SetSpawnPositionAndRotation(spawnable);
+        poolable.Destroyed -= _pool.Release;
 
-        spawnable.gameObject.SetActive(true);
+        poolable.Reset();
 
-        spawnable.Destroyed += _pool.Release;
+        poolable.gameObject.SetActive(false);
     }
 
-    protected virtual void OnRelease(Spawnable spawnable)
-    {
-        spawnable.Destroyed -= _pool.Release;
-
-        spawnable.Reset();
-    }
-
-    private void OnDestroyObject(Spawnable spawnable)
-        => Destroy(spawnable);
+    private void OnDestroyObject(T poolable)
+        => Destroy(poolable);
 }

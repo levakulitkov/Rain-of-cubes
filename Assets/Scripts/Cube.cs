@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(ColorChanger))]
-public class Cube : MonoBehaviour
+public class Cube : Poolable<Cube>
 {
     [SerializeField] private float _minDelay = 2f;
     [SerializeField] private float _maxDelay = 5f;
@@ -12,7 +12,7 @@ public class Cube : MonoBehaviour
     private ColorChanger _colorChanger;
     private bool _isDestructionActivated;
 
-    public event Action<Cube> Destroyed;
+    public override event Action<Cube> Destroyed;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Cube : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public override void Reset()
     {
         _colorChanger.Reset();
 

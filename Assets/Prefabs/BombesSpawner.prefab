@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7487654635858353645}
-  - component: {fileID: 3564819225763765121}
-  - component: {fileID: 7609498708905728077}
+  - component: {fileID: 3334376968260810952}
   m_Layer: 0
   m_Name: BombesSpawner
   m_TagString: Untagged
@@ -26,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7390012119831530870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6565509, y: 7.9465437, z: 17.955463}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3564819225763765121
+--- !u!114 &3334376968260810952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,20 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dfec61b623e702439da5e21fc24a034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Pool: {fileID: 7609498708905728077}
-  Interval: 0
-  _cubesPool: {fileID: 0}
---- !u!114 &7609498708905728077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7390012119831530870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a064ee7a5a93c44ebcd51c84092396d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _template: {fileID: 6602079413027663280, guid: 13553a6c7cb4f9f448aa62864e40c211, type: 3}
-  _container: {fileID: 7487654635858353645}
+  _container: {fileID: 0}
+  _cubesSpawner: {fileID: 0}

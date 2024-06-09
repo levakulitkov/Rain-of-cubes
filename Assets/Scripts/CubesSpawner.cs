@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
 public class CubesSpawner : Spawner<Cube>
 {
+    [SerializeField] private float _interval;
     [SerializeField] private Transform _spawnArea;
 
     private float _minPositionX;
     private float _maxPositionX;
     private float _minPositionY;
     private float _maxPositionY;
+
+    public event Action<Vector3> CubeDestroyed;
 
     private void OnEnable()
     {
@@ -29,33 +31,20 @@ public class CubesSpawner : Spawner<Cube>
         _maxPositionY = _spawnArea.transform.position.y + halfExtentY;
     }
 
-    private IEnumerator SpawningRoutine()
-    {
-        var wait = new WaitForSeconds(Interval);
-
-        while (enabled)
-        {
-            yield return wait;
-
-            _pool.Get();
-        }
-    }
-
-    //protected override Cube Create()
-    //{
-    //    Cube cube = base.Create();
-    //    SetSpawnPositionAndRotation(cube);
-
-    //    return cube;
-    //}
-
-    protected virtual void OnGet(Cube cube)
+    protected override void OnGet(Cube cube)
     {
         SetSpawnPositionAndRotation(cube);
 
-        cube.gameObject.SetActive(true);
+        cube.Destroyed += OnCubeDestroyed;
 
-        cube.Destroyed += _pool.Release;
+        base.OnGet(cube);
+    }
+
+    protected override void OnRelease(Cube cube)
+    {
+        cube.Destroyed -= OnCubeDestroyed;
+
+        base.OnRelease(cube);
     }
 
     private void SetSpawnPositionAndRotation(Cube cube)
@@ -63,4 +52,19 @@ public class CubesSpawner : Spawner<Cube>
             Random.Range(_minPositionX, _maxPositionX),
             Random.Range(_minPositionY, _maxPositionY)),
             Quaternion.identity);
+
+    private void OnCubeDestroyed(Cube cube)
+        => CubeDestroyed?.Invoke(cube.transform.position);
+
+    private IEnumerator SpawningRoutine()
+    {
+        var wait = new WaitForSeconds(_interval);
+
+        while (enabled)
+        {
+            yield return wait;
+
+            Get();
+        }
+    }
 }
