@@ -43,8 +43,6 @@ public class Cube : MonoBehaviour
     {
         yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelay));
 
-        gameObject.SetActive(false);
-
         Destroyed?.Invoke(this);
     }
 }

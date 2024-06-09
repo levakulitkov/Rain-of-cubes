@@ -1,15 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
+using Random = UnityEngine.Random;
 
-public class CubesSpawner : MonoBehaviour
+public class CubesSpawner : Spawner<Cube>
 {
-    [SerializeField] private float _interval;
-    [SerializeField] private Cube _template;
-    [SerializeField] private Transform _container;
     [SerializeField] private Transform _spawnArea;
 
-    private ObjectPool<Cube> _pool;
     private float _minPositionX;
     private float _maxPositionX;
     private float _minPositionY;
@@ -22,8 +20,6 @@ public class CubesSpawner : MonoBehaviour
 
     private void Start()
     {
-        _pool = new ObjectPool<Cube>(Create, OnGet, OnRelease, OnDestroyObject, false);
-
         float halfExtentX = _spawnArea.transform.localScale.x / 2;
         _minPositionX = _spawnArea.transform.position.x - halfExtentX;
         _maxPositionX = _spawnArea.transform.position.x + halfExtentX;
@@ -35,7 +31,7 @@ public class CubesSpawner : MonoBehaviour
 
     private IEnumerator SpawningRoutine()
     {
-        var wait = new WaitForSeconds(_interval);
+        var wait = new WaitForSeconds(Interval);
 
         while (enabled)
         {
@@ -45,15 +41,15 @@ public class CubesSpawner : MonoBehaviour
         }
     }
 
-    private Cube Create()
-    {
-        Cube cube = Instantiate(_template, _container);
-        SetSpawnPositionAndRotation(cube);
+    //protected override Cube Create()
+    //{
+    //    Cube cube = base.Create();
+    //    SetSpawnPositionAndRotation(cube);
 
-        return cube;
-    }
+    //    return cube;
+    //}
 
-    private void OnGet(Cube cube)
+    protected virtual void OnGet(Cube cube)
     {
         SetSpawnPositionAndRotation(cube);
 
@@ -61,16 +57,6 @@ public class CubesSpawner : MonoBehaviour
 
         cube.Destroyed += _pool.Release;
     }
-
-    private void OnRelease(Cube cube)
-    {
-        cube.Destroyed -= _pool.Release;
-
-        cube.Reset();
-    }
-
-    private void OnDestroyObject(Cube cube)
-        => Destroy(cube);
 
     private void SetSpawnPositionAndRotation(Cube cube)
         => cube.transform.SetPositionAndRotation(new Vector2(
